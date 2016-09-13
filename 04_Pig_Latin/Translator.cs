@@ -14,19 +14,12 @@ namespace _04_Pig_Latin
         public string Translate(string input)
         {
             string[] pigout = input.Split(' ');
-
-            if (pigout.Length == 1)
-            {
-                return Piggify(pigout[0]);
-            }
-            else
-            {
+                       
                 for (int i = 0; i < pigout.Length; i++)
                 {
                     pigout[i] = Piggify(pigout[i]);
                 }
-            }
-
+        
             return string.Join(" ", pigout);
            
 
