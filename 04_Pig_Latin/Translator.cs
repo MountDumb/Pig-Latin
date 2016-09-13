@@ -58,32 +58,32 @@ namespace _04_Pig_Latin
 
         
       
-        public void PunctuationCheck(string input, out string output, out string punctuation)
+        public void PunctuationCheck(string initialstring, out string strippedstring, out string punctuation)
         {
-            int lastcharacterininput = input.Length - 1;
+            int lchrstr= initialstring.Length - 1;
 
-            if (char.IsPunctuation(input[lastcharacterininput]) == true)
+            if (char.IsPunctuation(initialstring[lchrstr]) == true)
             {
-                punctuation = input[lastcharacterininput].ToString();
-                output = input.Substring(0, lastcharacterininput);
+                punctuation = initialstring[lchrstr].ToString();
+                strippedstring = initialstring.Substring(0, lchrstr);
             }
             else
             {
                 punctuation = "";
-                output = input;
+                strippedstring = initialstring;
             }
         }
         
-        public string Capitalize(string input, string output)
+        public string Capitalize(string initialstring, string finalstring)
         {
-            if (input.Substring(0, 1) == input.Substring(0, 1).ToUpperInvariant())
+            if (initialstring.Substring(0, 1) == initialstring.Substring(0, 1).ToUpperInvariant())
             {
-                return output.Substring(0, 1).ToUpperInvariant()
-                       + output.Substring(1).ToLowerInvariant();
+                return finalstring.Substring(0, 1).ToUpperInvariant()
+                       + finalstring.Substring(1).ToLowerInvariant();
             }
             else
             {
-                return output;
+                return finalstring;
             }
         }  
 
