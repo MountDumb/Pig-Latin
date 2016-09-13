@@ -32,24 +32,27 @@ namespace _04_Pig_Latin
 
         }
 
+        
         public string Piggify(string input)
         {
             char[] vowels = { 'a', 'e', 'i', 'o' };
             string output;
+            string punctation = "";
+            int lastcharininput = input.Length - 1;
             bool running = true;
             bool capitalize = false;
-            string punctation = "";
+            
 
             //Capitalization check
             if (input.Substring(0, 1) == input.Substring(0, 1).ToUpperInvariant())
             {
                 capitalize = true;
             }
-            //simple punctuation check
-            if (IsPunctuation(input[input.Length - 1]) == true)
+            //simple punctuation check using super advanced IsPunctuation() method defined below.
+            if (IsPunctuation(input[lastcharininput]) == true)
             {
-                punctation = input[input.Length - 1].ToString();
-                output = input.Substring(0, input.Length - 1);
+                punctation = input[lastcharininput].ToString();
+                output = input.Substring(0, lastcharininput);
             }
             else
             {
@@ -77,6 +80,7 @@ namespace _04_Pig_Latin
             return output + punctation;
         }
 
+        
         public bool IsPunctuation(char c)
         {
             return char.IsPunctuation(c);
