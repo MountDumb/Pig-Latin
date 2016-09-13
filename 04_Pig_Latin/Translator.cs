@@ -17,7 +17,7 @@ namespace _04_Pig_Latin
                        
                 for (int i = 0; i < pigout.Length; i++)
                 {
-                    pigout[i] = Piggify(pigout[i]);
+                    pigout[i] = Piggyfy(pigout[i]);
                 }
         
             return string.Join(" ", pigout);
@@ -26,24 +26,17 @@ namespace _04_Pig_Latin
         }
 
         
-        public string Piggify(string input)
+        public string Piggyfy(string input)
         {
             char[] vowels = { 'a', 'e', 'i', 'o' };
             string output = "";
             string punctuation = "";
             bool running = true;
-            bool capitalize = false;
-
+           
             //Punctuation check using PunctuationCheck() method defined below. 
             //Only handles punctuation at the end of a word.
             PunctuationCheck(input, out output, out punctuation);
 
-            //Capitalization check
-            if (input.Substring(0, 1) == input.Substring(0, 1).ToUpperInvariant())
-            {
-                capitalize = true;
-            }
-                       
             while (running)
             { 
             if (!vowels.Contains(char.Parse(output.Substring(0, 1))))
@@ -57,11 +50,9 @@ namespace _04_Pig_Latin
                 }
             }
 
-            if (capitalize == true)
-            {
-                output = output.Substring(0, 1).ToUpperInvariant()
-                       + output.Substring(1).ToLowerInvariant();
-            }
+            //Capitalization check. Must be done after the word has been piggyfied.
+            output = Capitalize(input, output);
+                        
             return output + punctuation;
         }
 
@@ -80,6 +71,19 @@ namespace _04_Pig_Latin
             {
                 punctuation = "";
                 output = input;
+            }
+        }
+        
+        public string Capitalize(string input, string output)
+        {
+            if (input.Substring(0, 1) == input.Substring(0, 1).ToUpperInvariant())
+            {
+                return output.Substring(0, 1).ToUpperInvariant()
+                       + output.Substring(1).ToLowerInvariant();
+            }
+            else
+            {
+                return output;
             }
         }  
 
