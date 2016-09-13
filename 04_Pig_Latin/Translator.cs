@@ -37,7 +37,12 @@ namespace _04_Pig_Latin
             char[] vowels = { 'a', 'e', 'i', 'o' };
             string output = input;
             bool running = true;
-            
+            bool capitalize = false;
+
+            if (input.Substring(0, 1) == input.Substring(0, 1).ToUpperInvariant())
+            {
+                capitalize = true;
+            }
             while (running)
             { 
             if (!vowels.Contains(char.Parse(output.Substring(0, 1))))
@@ -51,6 +56,11 @@ namespace _04_Pig_Latin
                 }
             }
 
+            if (capitalize == true)
+            {
+                output = output.Substring(0, 1).ToUpperInvariant()
+                       + output.Substring(1).ToLowerInvariant();
+            }
             return output;
         }
     }
