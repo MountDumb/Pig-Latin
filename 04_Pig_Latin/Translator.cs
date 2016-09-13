@@ -36,29 +36,21 @@ namespace _04_Pig_Latin
         public string Piggify(string input)
         {
             char[] vowels = { 'a', 'e', 'i', 'o' };
-            string output;
-            string punctation = "";
-            int lastcharininput = input.Length - 1;
+            string output = "";
+            string punctuation = "";
             bool running = true;
             bool capitalize = false;
-            
+
+            //Punctuation check using PunctuationCheck() method defined below. 
+            //Only handles punctuation at the end of a word.
+            PunctuationCheck(input, out output, out punctuation);
 
             //Capitalization check
             if (input.Substring(0, 1) == input.Substring(0, 1).ToUpperInvariant())
             {
                 capitalize = true;
             }
-            //simple punctuation check using super advanced IsPunctuation() method defined below.
-            if (IsPunctuation(input[lastcharininput]) == true)
-            {
-                punctation = input[lastcharininput].ToString();
-                output = input.Substring(0, lastcharininput);
-            }
-            else
-            {
-                output = input;
-            }
-
+                       
             while (running)
             { 
             if (!vowels.Contains(char.Parse(output.Substring(0, 1))))
@@ -77,15 +69,27 @@ namespace _04_Pig_Latin
                 output = output.Substring(0, 1).ToUpperInvariant()
                        + output.Substring(1).ToLowerInvariant();
             }
-            return output + punctation;
+            return output + punctuation;
         }
 
         
-        public bool IsPunctuation(char c)
+      
+        public void PunctuationCheck(string input, out string output, out string punctuation)
         {
-            return char.IsPunctuation(c);
-        }
+            int lastcharacterininput = input.Length - 1;
 
-        
+            if (char.IsPunctuation(input[lastcharacterininput]) == true)
+            {
+                punctuation = input[lastcharacterininput].ToString();
+                output = input.Substring(0, lastcharacterininput);
+            }
+            else
+            {
+                punctuation = "";
+                output = input;
+            }
+        }  
+
+
     }
 }
