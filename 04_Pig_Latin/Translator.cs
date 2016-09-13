@@ -13,7 +13,7 @@ namespace _04_Pig_Latin
 
         public string Translate(string input)
         {
-            string[] pigout = input.Split();
+            string[] pigout = input.Split(' ');
 
             if (pigout.Length == 1)
             {
@@ -35,14 +35,27 @@ namespace _04_Pig_Latin
         public string Piggify(string input)
         {
             char[] vowels = { 'a', 'e', 'i', 'o' };
-            string output = input;
+            string output;
             bool running = true;
             bool capitalize = false;
+            string punctation = "";
 
+            //Capitalization check
             if (input.Substring(0, 1) == input.Substring(0, 1).ToUpperInvariant())
             {
                 capitalize = true;
             }
+            //simple punctuation check
+            if (IsPunctuation(input[input.Length - 1]) == true)
+            {
+                punctation = input[input.Length - 1].ToString();
+                output = input.Substring(0, input.Length - 1);
+            }
+            else
+            {
+                output = input;
+            }
+
             while (running)
             { 
             if (!vowels.Contains(char.Parse(output.Substring(0, 1))))
@@ -61,7 +74,14 @@ namespace _04_Pig_Latin
                 output = output.Substring(0, 1).ToUpperInvariant()
                        + output.Substring(1).ToLowerInvariant();
             }
-            return output;
+            return output + punctation;
         }
+
+        public bool IsPunctuation(char c)
+        {
+            return char.IsPunctuation(c);
+        }
+
+        
     }
 }

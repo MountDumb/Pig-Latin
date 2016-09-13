@@ -76,6 +76,13 @@ namespace _04_Pig_Latin
             Assert.AreEqual("Ethay Idgebray overay ethay Iverray Aikway", translator.Translate("The Bridge over the River Kwai"));
 
         }
+        [TestMethod]
+        public void AssertCapitalizedWordsAndPunctuation()
+        {
+            Translator translator = new Translator();
+            Assert.AreEqual("Ietquay! Ethay ickquay, ownbray oxfay isay ickquay.", translator.Translate("Quiet! The quick, brown fox is quick."));
+
+        }
         //Test-driving bonus:
         // write a test asserting that capitalized words are still capitalized (but with a different initial capital letter, of course)
         // retain the punctuation from the original phrase
