@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace _04_Pig_Latin
 {
-    internal class Translator
+    public class Translator
     {
         public Translator()
         {
@@ -39,7 +39,7 @@ namespace _04_Pig_Latin
 
             while (running)
             { 
-            if (!vowels.Contains(char.Parse(output.Substring(0, 1))))
+            if (!vowels.Contains(char.Parse(output.Substring(0, 1).ToLowerInvariant())))
             {
                 output = output.Substring(1) + output.Substring(0, 1);
             }
@@ -76,10 +76,13 @@ namespace _04_Pig_Latin
         
         public string Capitalize(string initialstring, string finalstring)
         {
+            
             if (initialstring.Substring(0, 1) == initialstring.Substring(0, 1).ToUpperInvariant())
             {
-                return finalstring.Substring(0, 1).ToUpperInvariant()
-                       + finalstring.Substring(1).ToLowerInvariant();
+                    {
+                        return finalstring.Substring(0, 1).ToUpperInvariant()
+                               + finalstring.Substring(1).ToLowerInvariant();
+                    }
             }
             else
             {
