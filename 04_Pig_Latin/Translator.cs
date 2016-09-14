@@ -51,8 +51,9 @@ namespace _04_Pig_Latin
             }
 
             //Capitalization check. Must be done after the word has been piggyfied.
-            output = Capitalize(input, output);
-                        
+            //output = Capitalize(input, output);
+            output = Capitalize(output);
+
             return output + punctuation;
         }
 
@@ -73,22 +74,37 @@ namespace _04_Pig_Latin
                 strippedstring = initialstring;
             }
         }
-        
-        public string Capitalize(string initialstring, string finalstring)
+
+        public string Capitalize(string input)
         {
+            foreach (var item in input)
+            {
+                if (char.IsUpper(item))
+                {
+                    return input.Substring(0, 1).ToUpperInvariant()
+                               + input.Substring(1).ToLowerInvariant();
+                }
+
+            }
+            return input;
+        }
+        //public string Capitalize(string initialstring, string finalstring)
+        //{
             
-            if (initialstring.Substring(0, 1) == initialstring.Substring(0, 1).ToUpperInvariant())
-            {
-                    {
-                        return finalstring.Substring(0, 1).ToUpperInvariant()
-                               + finalstring.Substring(1).ToLowerInvariant();
-                    }
-            }
-            else
-            {
-                return finalstring;
-            }
-        }  
+        //    if (initialstring.Substring(0, 1) == initialstring.Substring(0, 1).ToUpperInvariant())
+        //    {
+        //            {
+        //                return finalstring.Substring(0, 1).ToUpperInvariant()
+        //                       + finalstring.Substring(1).ToLowerInvariant();
+        //            }
+        //    }
+        //    else
+        //    {
+        //        return finalstring;
+        //    }
+        //}
+        
+        
 
 
     }
